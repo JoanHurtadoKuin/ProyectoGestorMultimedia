@@ -39,4 +39,4 @@ Si el contenido es de tipo imagen debe de poder redimensionarse automáticamente
 RF.2
 Los administradores han de poder hacer logout de la aplicación web.
 
-[!image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/diagramaProyectoMultimedia.jpg)
+![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/diagramaProyectoMultimedia.jpg)
