@@ -36,7 +36,7 @@ En caso de que el contenido sea imagen o video los administradores deben poder v
 RF.10
 Si el contenido es de tipo imagen debe de poder redimensionarse automáticamente en caso que las medidas de la imagen sean superiores a los valores definidos en el fichero de configuración.
 
-RF.2
+RF.12
 Los administradores han de poder hacer logout de la aplicación web.
 
 ![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/diagramaProyectoMultimedia.jpg)
