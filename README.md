@@ -42,6 +42,18 @@ Los administradores han de poder hacer logout de la aplicación web.
 ![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/diagramaProyectoMultimedia.jpg)
 
 
+<details>
+  <summary> DDL Gestror proyectos y primeros DML inserts de testeo </summary>
+<br>
+ 
+ <br>
+<p align="justify">SQL </p>
+``` sql
+  
+  
+```
+  </details>
+<br>
 
 
 ![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/modelo_gestor_multimedia.png)
