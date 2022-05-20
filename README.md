@@ -119,3 +119,7 @@ VALUES
 
 
 ![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/modelo_gestor_multimedia.png)
+
+Trello 
+
+https://trello.com/b/68dtorAP/proyecto-7-gestor-multimedia
