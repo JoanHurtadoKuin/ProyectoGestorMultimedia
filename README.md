@@ -40,3 +40,8 @@ RF.12
 Los administradores han de poder hacer logout de la aplicación web.
 
 ![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/diagramaProyectoMultimedia.jpg)
+
+
+
+
+![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/modelo_gestor_multimedia.png)
