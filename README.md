@@ -51,9 +51,6 @@ Si el contenido es de tipo imagen debe de poder redimensionarse automáticamente
 RF.15
 Los administradores han de poder hacer logout de la aplicación web.
 
-RF.16
-Los usuarios han de poder hacer logout de la aplicación web.
-
 ![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/diagramaProyectoMultimedia.jpg)
 
 
@@ -133,7 +130,7 @@ VALUES
 <br>
 
 
-![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/modelo_gestor_multimedia.png)
+![image](https://user-images.githubusercontent.com/65864090/170553862-0ba9bb4d-1817-4812-bf4c-b7011c43a3c7.png)
 
 Trello 
 
