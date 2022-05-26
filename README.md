@@ -51,6 +51,9 @@ Si el contenido es de tipo imagen debe de poder redimensionarse automáticamente
 RF.15
 Los administradores han de poder hacer logout de la aplicación web.
 
+RF.16
+Los usuarios han de poder hacer logout de la aplicación web.
+
 ![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/diagramaProyectoMultimedia.jpg)
 
 
