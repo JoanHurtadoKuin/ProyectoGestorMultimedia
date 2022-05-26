@@ -12,31 +12,43 @@ RF.2
 Los administradores han autenticarse a la aplicación web haciendo login.
 
 RF.3
-Los administradores han de poder subir contenidos a la web.
+Los administradores han de poder hacer todo el CRUD de contenidos, usuarios y categorías a la web.
 
 RF.4
-Els administradors han de poder sgenerar categorías de varios niveles.
+Los administradores han de poder subir contenidos a la web.
 
 RF.5
-Cada contenido debe pertenecer a una de estas categorías.
+Los usuarios se han de poder registrar en la aplicación web, estableciendo un usuari/contrasenya.
 
 RF.6
-Cada contenido de cualquier tipo y se deben almacenar en la carpeta public/multimedia.
+Los usuarios han autenticarse a la aplicación web haciendo login.
 
 RF.7
-Cada contenido debera mostrar el nombre, tamaño del fichero y la ruta pública.
+Els administradores han de poder generar categorías de varios niveles a partir de su supercategoría.
 
 RF.8
+Los usuarios han de poder subir contenidos a la web en sus propias categorías.
+
+RF.9
+Cada contenido debe pertenecer a una de estas categorías.
+
+RF.10
+Cada contenido de cualquier tipo y se deben almacenar en la carpeta public/multimedia categoría de usuario.
+
+RF.11
+Cada contenido debera mostrar el nombre, tamaño del fichero y la ruta pública.
+
+RF.12
 Los administradores deben de poder mediante un botón copiar al portapapeles el path completo
 público del contenido.
 
-RF.9
+RF.13
 En caso de que el contenido sea imagen o video los administradores deben poder visualizar una vista previa en el detalle del fichero.
 
-RF.10
+RF.14
 Si el contenido es de tipo imagen debe de poder redimensionarse automáticamente en caso que las medidas de la imagen sean superiores a los valores definidos en el fichero de configuración.
 
-RF.12
+RF.15
 Los administradores han de poder hacer logout de la aplicación web.
 
 ![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/diagramaProyectoMultimedia.jpg)
@@ -118,7 +130,7 @@ VALUES
 <br>
 
 
-![image](https://user-images.githubusercontent.com/65864090/170547445-4a2173e4-28f5-416e-ab58-1f6e3cb1c905.png)
+![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/modelo_gestor_multimedia.png)
 
 Trello 
 
