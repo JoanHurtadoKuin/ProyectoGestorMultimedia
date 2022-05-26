@@ -118,7 +118,7 @@ VALUES
 <br>
 
 
-![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/modelo_gestor_multimedia.png)
+![image](https://user-images.githubusercontent.com/65864090/170547445-4a2173e4-28f5-416e-ab58-1f6e3cb1c905.png)
 
 Trello 
 
