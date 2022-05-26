@@ -66,45 +66,58 @@ Los usuarios han de poder hacer logout de la aplicación web.
 <p align="justify">SQL </p>
   
 ``` sql
-  DROP TABLE IF EXISTS `usuario`;
+Drop Database if exists `heroku_33ebd3405aec3c7`;
+Create Database if not exists `heroku_33ebd3405aec3c7`;
+Use `heroku_33ebd3405aec3c7`;
+
+DROP TABLE IF EXISTS `usuario` ;
 CREATE TABLE IF NOT EXISTS `usuario`  (
-    `nombre` VARCHAR(50)  PRIMARY KEY,
-    `contrasenya` VARCHAR(50) NOT NULL
+    `nombre` VARCHAR(100)  PRIMARY KEY,
+    `contrasenya` VARCHAR(255) NOT NULL,
+	`superusuario` VARCHAR(100) NOT NULL,
+     KEY(superusuario), FOREIGN KEY(superusuario) REFERENCES usuario(nombre)
+     ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-INSERT INTO `usuario` (nombre, contrasenya)
-VALUES
-	('Daniel', '745258424'),
-	('Jose', '745258423');
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Administrador', '4321','Administrador');
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Usuario', '4321','Administrador');
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Daniel', '4321', 'Administrador');
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Jose', '4321', 'Usuario');
 
+/*INSERT INTO `usuario` (nombre, contrasenya,tipo_superusuario)
+VALUES
+	('Administrador', '745258424'),
+	('Usuario', '745258423'),
+    ('Daniel', '745258424','Administrador'),
+	('Jose', '745258423','Usuario');*/
+
+SET auto_increment_increment = 1;
 DROP TABLE IF EXISTS `categoria` ;
 CREATE TABLE IF NOT EXISTS `categoria` (
     `id` INT auto_increment  PRIMARY KEY,
     `nombre` VARCHAR(100) NOT NULL UNIQUE,
     `descripcion` VARCHAR(255),
-    `id_supercategoria` INT, 
-    `nombre_usuario` VARCHAR(50),
+    `id_supercategoria` INT NOT NULL, 
+    `nombre_usuario` VARCHAR(100) NOT NULL,
      KEY(id_supercategoria), FOREIGN KEY(id_supercategoria) REFERENCES categoria(id)
      ON DELETE CASCADE ON UPDATE CASCADE,
 	 KEY(nombre_usuario), FOREIGN KEY(nombre_usuario) REFERENCES usuario(nombre)
-     ON DELETE SET NULL ON UPDATE CASCADE
+     ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'patos', 'carpeta de patos', null, 'Jose');
+INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'patos', 'carpeta de patos', 1 , 'Jose');
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'gatos', 'carpeta de gatos', LAST_INSERT_ID(), 'Jose');
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'perros', 'carpeta de perros', LAST_INSERT_ID(), 'Jose');
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'personas', 'carpeta de personas', LAST_INSERT_ID(), 'Jose');
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'casas', 'carpeta de casas', LAST_INSERT_ID(), 'Jose');
 
 /* Inserts de testeo
-
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'cosas', 'carpeta de cosas', 1, 'Javier');
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'casas', 'carpeta de casas', 1, 'Daniel');
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'categoría', 'carpeta de categorías', 1, 'Daniel');
-
 */
 
-
+SET auto_increment_increment = 1;
 DROP TABLE IF EXISTS `archivo` ;
 CREATE TABLE IF NOT EXISTS `archivo` (
     `id` INT auto_increment PRIMARY KEY,
@@ -115,20 +128,20 @@ CREATE TABLE IF NOT EXISTS `archivo` (
     `detalle` VARCHAR(255),
     `descripcion` VARCHAR(255),
     `id_categoria` INT NOT NULL,
-	`nombre_usuario` VARCHAR(255),
+	`nombre_usuario` VARCHAR(100) NOT NULL,
 	 KEY(id_categoria), FOREIGN KEY(id_categoria) REFERENCES categoria(id)
      ON DELETE CASCADE ON UPDATE CASCADE,
 	 KEY(nombre_usuario), FOREIGN KEY(nombre_usuario) REFERENCES usuario(nombre)
-     ON DELETE SET NULL ON UPDATE CASCADE
+     ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 INSERT INTO `archivo` (nombre, tamanyo, path_publico, tipo, detalle, descripcion, id_categoria, nombre_usuario)
 VALUES
-	('gato_hilo','5','/c/gatos','png','Gato hilo','Gato con un hilo','1','Daniel'),
+	('gato_hilo','5','/c/gatos','png','Gato hilo','Gato con un hilo',1,'Daniel'),
 	('pato_estanque','10','/c/patos','png','Pato en un estanque','Pato en un estanque antiguo',1,'Daniel'),
-	('perro_parque','4','/c/perro','png','perro en un parque','perro en un parque para perros',11,'Daniel'),
-	('hombre_banco','1','/c/personas','png','hombre en un banco','hombre en un banco blanco',21,'Daniel'),
-	('casa_fachada','15','/c/casa','png','fachada grande','fachada grande de casa de pueblo',31,'Daniel');
+	('perro_parque','4','/c/perro','png','perro en un parque','perro en un parque para perros',3,'Daniel'),
+	('hombre_banco','1','/c/personas','png','hombre en un banco','hombre en un banco blanco',4,'Daniel'),
+	('casa_fachada','15','/c/casa','png','fachada grande','fachada grande de casa de pueblo',1,'Daniel');
 ```
   </details>
 <br>
