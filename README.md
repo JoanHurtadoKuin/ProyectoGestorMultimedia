@@ -75,9 +75,7 @@ DROP TABLE IF EXISTS `usuario` ;
 CREATE TABLE IF NOT EXISTS `usuario`  (
     `nombre` VARCHAR(100)  PRIMARY KEY,
     `contrasenya` VARCHAR(255) NOT NULL,
-	`superusuario` VARCHAR(100) NOT NULL,
-     KEY(superusuario), FOREIGN KEY(superusuario) REFERENCES usuario(nombre)
-     ON DELETE RESTRICT ON UPDATE CASCADE
+    `superusuario` BOOLEAN NOT NULL DEFAULT 0
 );
 
 INSERT INTO `gestion_multimedia`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Administrador', '4321','Administrador');
