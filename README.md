@@ -66,9 +66,10 @@ Los usuarios han de poder hacer logout de la aplicación web.
 <p align="justify">SQL </p>
   
 ``` sql
-Drop Database if exists `heroku_33ebd3405aec3c7`;
-Create Database if not exists `heroku_33ebd3405aec3c7`;
-Use `heroku_33ebd3405aec3c7`;
+Drop Database if exists `gestion_multimedia`;
+Create Database if not exists `gestion_multimedia`;
+Use `gestion_multimedia`;
+Drop table if exists `gestion_multimedia`.`usuario` ;
 
 DROP TABLE IF EXISTS `usuario` ;
 CREATE TABLE IF NOT EXISTS `usuario`  (
@@ -79,10 +80,10 @@ CREATE TABLE IF NOT EXISTS `usuario`  (
      ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Administrador', '4321','Administrador');
-INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Usuario', '4321','Administrador');
-INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Daniel', '4321', 'Administrador');
-INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Jose', '4321', 'Usuario');
+INSERT INTO `gestion_multimedia`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Administrador', '4321','Administrador');
+INSERT INTO `gestion_multimedia`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Usuario', '4321','Administrador');
+INSERT INTO `gestion_multimedia`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Daniel', '4321', 'Administrador');
+INSERT INTO `gestion_multimedia`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Jose', '4321', 'Usuario');
 
 /*INSERT INTO `usuario` (nombre, contrasenya,tipo_superusuario)
 VALUES
@@ -91,7 +92,6 @@ VALUES
     ('Daniel', '745258424','Administrador'),
 	('Jose', '745258423','Usuario');*/
 
-SET auto_increment_increment = 1;
 DROP TABLE IF EXISTS `categoria` ;
 CREATE TABLE IF NOT EXISTS `categoria` (
     `id` INT auto_increment  PRIMARY KEY,
@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `categoria` (
      ON DELETE CASCADE ON UPDATE CASCADE
 );
 
-INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'patos', 'carpeta de patos', 1 , 'Jose');
+INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'patos', 'carpeta de patos', null, 'Jose');
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'gatos', 'carpeta de gatos', LAST_INSERT_ID(), 'Jose');
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'perros', 'carpeta de perros', LAST_INSERT_ID(), 'Jose');
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'personas', 'carpeta de personas', LAST_INSERT_ID(), 'Jose');
@@ -117,7 +117,7 @@ INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `no
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'categoría', 'carpeta de categorías', 1, 'Daniel');
 */
 
-SET auto_increment_increment = 1;
+
 DROP TABLE IF EXISTS `archivo` ;
 CREATE TABLE IF NOT EXISTS `archivo` (
     `id` INT auto_increment PRIMARY KEY,
@@ -137,7 +137,7 @@ CREATE TABLE IF NOT EXISTS `archivo` (
 
 INSERT INTO `archivo` (nombre, tamanyo, path_publico, tipo, detalle, descripcion, id_categoria, nombre_usuario)
 VALUES
-	('gato_hilo','5','/c/gatos','png','Gato hilo','Gato con un hilo',1,'Daniel'),
+	('gato_hilo','5','/c/gatos','png','Gato hilo','Gato con un hilo','1','Daniel'),
 	('pato_estanque','10','/c/patos','png','Pato en un estanque','Pato en un estanque antiguo',1,'Daniel'),
 	('perro_parque','4','/c/perro','png','perro en un parque','perro en un parque para perros',3,'Daniel'),
 	('hombre_banco','1','/c/personas','png','hombre en un banco','hombre en un banco blanco',4,'Daniel'),
