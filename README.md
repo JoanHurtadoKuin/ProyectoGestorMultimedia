@@ -161,6 +161,8 @@ VALUES
 /*Usuarios*/
 /*Error en el superusuario (0 , 1) acepta 2,3,4... Porque es un tinyint*/
 INSERT INTO `heroku_33ebd3405aec3c7`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Superman', '1234', '3');
+/*Usuario repetido*/
+INSERT INTO `heroku_33ebd3405aec3c7`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Superman', '1234', '1');
 
 
 /*Categoria*/
