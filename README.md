@@ -66,22 +66,18 @@ Los usuarios han de poder hacer logout de la aplicación web.
 <p align="justify">SQL </p>
   
 ``` sql
-Drop Database if exists `gestion_multimedia`;
-Create Database if not exists `gestion_multimedia`;
-Use `gestion_multimedia`;
-Drop table if exists `gestion_multimedia`.`usuario` ;
-
 DROP TABLE IF EXISTS `usuario` ;
 CREATE TABLE IF NOT EXISTS `usuario`  (
-    `nombre` VARCHAR(100)  PRIMARY KEY,
+	`id` INT AUTO_INCREMENT  PRIMARY KEY,
+    `nombre` VARCHAR(100) UNIQUE NOT NULL,
     `contrasenya` VARCHAR(255) NOT NULL,
     `superusuario` BOOLEAN NOT NULL DEFAULT 0
 );
-
-INSERT INTO `gestion_multimedia`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Administrador', '4321','Administrador');
-INSERT INTO `gestion_multimedia`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Usuario', '4321','Administrador');
-INSERT INTO `gestion_multimedia`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Daniel', '4321', 'Administrador');
-INSERT INTO `gestion_multimedia`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Jose', '4321', 'Usuario');
+ALTER TABLE `usuario` AUTO_INCREMENT = 1;
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Administrador', '4321',true);
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Usuario', '4321', false);
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Daniel', '4321', false);
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Jose', '4321', false);
 
 /*INSERT INTO `usuario` (nombre, contrasenya,tipo_superusuario)
 VALUES
@@ -92,22 +88,22 @@ VALUES
 
 DROP TABLE IF EXISTS `categoria` ;
 CREATE TABLE IF NOT EXISTS `categoria` (
-    `id` INT auto_increment  PRIMARY KEY,
+    `id` INT AUTO_INCREMENT  PRIMARY KEY,
     `nombre` VARCHAR(100) NOT NULL UNIQUE,
     `descripcion` VARCHAR(255),
     `id_supercategoria` INT NOT NULL, 
-    `nombre_usuario` VARCHAR(100) NOT NULL,
-     KEY(id_supercategoria), FOREIGN KEY(id_supercategoria) REFERENCES categoria(id)
+    `id_usuario` INT NOT NULL,
+     KEY(`id_supercategoria`), FOREIGN KEY(`id_supercategoria`) REFERENCES `categoria`(`id`)
      ON DELETE CASCADE ON UPDATE CASCADE,
-	 KEY(nombre_usuario), FOREIGN KEY(nombre_usuario) REFERENCES usuario(nombre)
+	 KEY(`id_usuario`), FOREIGN KEY(`id_usuario`) REFERENCES `usuario`(`id`)
      ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'patos', 'carpeta de patos', null, 'Jose');
-INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'gatos', 'carpeta de gatos', LAST_INSERT_ID(), 'Jose');
-INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'perros', 'carpeta de perros', LAST_INSERT_ID(), 'Jose');
-INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'personas', 'carpeta de personas', LAST_INSERT_ID(), 'Jose');
-INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'casas', 'carpeta de casas', LAST_INSERT_ID(), 'Jose');
+ALTER TABLE `categoria` AUTO_INCREMENT = 1;
+INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `id_usuario`) VALUES (1, 'patos', 'carpeta de patos', 1, 31);
+INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `id_usuario`) VALUES (default, 'gatos', 'carpeta de gatos', 1, 31);
+INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `id_usuario`) VALUES (default, 'perros', 'carpeta de perros', 1, 31);
+INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `id_usuario`) VALUES (default, 'personas', 'carpeta de personas', LAST_INSERT_ID(), 21);
+INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `id_usuario`) VALUES (default, 'casas', 'carpeta de casas', LAST_INSERT_ID(), 21);
 
 /* Inserts de testeo
 INSERT INTO `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES (default, 'cosas', 'carpeta de cosas', 1, 'Javier');
@@ -126,20 +122,20 @@ CREATE TABLE IF NOT EXISTS `archivo` (
     `detalle` VARCHAR(255),
     `descripcion` VARCHAR(255),
     `id_categoria` INT NOT NULL,
-	`nombre_usuario` VARCHAR(100) NOT NULL,
-	 KEY(id_categoria), FOREIGN KEY(id_categoria) REFERENCES categoria(id)
+	`id_usuario` INT NOT NULL,
+	 KEY(`id_categoria`), FOREIGN KEY(`id_categoria`) REFERENCES `categoria`(`id`)
      ON DELETE CASCADE ON UPDATE CASCADE,
-	 KEY(nombre_usuario), FOREIGN KEY(nombre_usuario) REFERENCES usuario(nombre)
+	 KEY(`id_usuario`), FOREIGN KEY(`id_usuario`) REFERENCES `usuario`(`id`)
      ON DELETE CASCADE ON UPDATE CASCADE
 );
-
-INSERT INTO `archivo` (nombre, tamanyo, path_publico, tipo, detalle, descripcion, id_categoria, nombre_usuario)
+ALTER TABLE `archivo` AUTO_INCREMENT = 1;
+INSERT INTO `archivo` (`nombre`, `tamanyo`, `path_publico`, `tipo`, `detalle`, `descripcion`, `id_categoria`, `id_usuario`)
 VALUES
-	('gato_hilo','5','/c/gatos','png','Gato hilo','Gato con un hilo','1','Daniel'),
-	('pato_estanque','10','/c/patos','png','Pato en un estanque','Pato en un estanque antiguo',1,'Daniel'),
-	('perro_parque','4','/c/perro','png','perro en un parque','perro en un parque para perros',3,'Daniel'),
-	('hombre_banco','1','/c/personas','png','hombre en un banco','hombre en un banco blanco',4,'Daniel'),
-	('casa_fachada','15','/c/casa','png','fachada grande','fachada grande de casa de pueblo',1,'Daniel');
+	('gato_hilo','5','/c/gatos','png','Gato hilo','Gato con un hilo','1',31),
+	('pato_estanque','10','/c/patos','png','Pato en un estanque','Pato en un estanque antiguo',1,31),
+	('perro_parque','4','/c/perro','png','perro en un parque','perro en un parque para perros',41,21),
+	('hombre_banco','1','/c/personas','png','hombre en un banco','hombre en un banco blanco',41,21),
+	('casa_fachada','15','/c/casa','png','fachada grande','fachada grande de casa de pueblo',1,31);
 ```
   </details>
 <br>
@@ -156,32 +152,32 @@ VALUES
   
 ``` sql testing
 
+
 /*Query Test Insert*/
 
 /*Usuarios*/
 /*Error en el superusuario (0 , 1) acepta 2,3,4... Porque es un tinyint*/
-INSERT INTO `heroku_33ebd3405aec3c7`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Superman', '1234', '3');
-/*Usuario repetido*/
-INSERT INTO `heroku_33ebd3405aec3c7`.`usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Superman', '1234', '1');
+INSERT INTO  `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Superman', '1234', '3');
 
 
 /*Categoria*/
 /*Error en nombre_usuario*/
-INSERT INTO `heroku_33ebd3405aec3c7`.`categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES ('6', 'coche', 'carpeta de coches', '6', 'Batman');
+INSERT INTO  `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES ('6', 'coche', 'carpeta de coches', '6', 'Batman');
 /*Error en la super_categoria*/
-INSERT INTO `heroku_33ebd3405aec3c7`.`categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES ('6', 'fantasma', 'carpeta de fantasmas', '7', 'Superman');
+INSERT INTO  `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES ('6', 'fantasma', 'carpeta de fantasmas', '7', 'Superman');
 /*Id duplicada*/
-INSERT INTO `heroku_33ebd3405aec3c7`.`categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES ('6', 'ratas', 'carpeta de ratones', '6', 'Superman');
+INSERT INTO  `categoria` (`id`, `nombre`, `descripcion`, `id_supercategoria`, `nombre_usuario`) VALUES ('6', 'ratas', 'carpeta de ratones', '6', 'Superman');
 
 
 /*Archivo*/
-INSERT INTO `heroku_33ebd3405aec3c7`.`archivo` (`id`, `nombre`, `tamanyo`, `path_publico`, `tipo`, `detalle`, `descripcion`, `id_categoria`, `nombre_usuario`) VALUES ('6', 'foto_casa', '10', '/c/casa', 'png', 'detalle', 'detalle largo', '5', 'Superman');
+INSERT INTO  `archivo` (`id`, `nombre`, `tamanyo`, `path_publico`, `tipo`, `detalle`, `descripcion`, `id_categoria`, `nombre_usuario`) VALUES ('6', 'foto_casa', '10', '/c/casa', 'png', 'detalle', 'detalle largo', '5', 'Superman');
 /*Id duplicada*/
-INSERT INTO `heroku_33ebd3405aec3c7`.`archivo` (`id`, `nombre`, `tamanyo`, `path_publico`, `tipo`, `detalle`, `descripcion`, `id_categoria`, `nombre_usuario`) VALUES ('6', 'moviles', '10', '/c/moviles', 'png', 'detalle moviles', 'detalle largo', '5', 'Superman');
+INSERT INTO  `archivo` (`id`, `nombre`, `tamanyo`, `path_publico`, `tipo`, `detalle`, `descripcion`, `id_categoria`, `nombre_usuario`) VALUES ('6', 'moviles', '10', '/c/moviles', 'png', 'detalle moviles', 'detalle largo', '5', 'Superman');
 /*Usuario inexistente*/
-INSERT INTO `heroku_33ebd3405aec3c7`.`archivo` (`id`, `nombre`, `tamanyo`, `path_publico`, `tipo`, `detalle`, `descripcion`, `id_categoria`, `nombre_usuario`) VALUES ('7', 'foto_francisco', '10', '/c/fran', 'png', 'detalle', 'detalle largo', '7', 'Francisco');
+INSERT INTO  `archivo` (`id`, `nombre`, `tamanyo`, `path_publico`, `tipo`, `detalle`, `descripcion`, `id_categoria`, `nombre_usuario`) VALUES ('7', 'foto_francisco', '10', '/c/fran', 'png', 'detalle', 'detalle largo', '7', 'Francisco');
 /*SuperCategoria inexistente*/
-INSERT INTO `heroku_33ebd3405aec3c7`.`archivo` (`id`, `nombre`, `tamanyo`, `path_publico`, `tipo`, `detalle`, `descripcion`, `id_categoria`, `nombre_usuario`) VALUES ('7', 'foto_prueba', '10', '/c/prueba', 'png', 'detalle', 'detalle largo', '8', 'Superman');
+INSERT INTO  `archivo` (`id`, `nombre`, `tamanyo`, `path_publico`, `tipo`, `detalle`, `descripcion`, `id_categoria`, `nombre_usuario`) VALUES ('7', 'foto_prueba', '10', '/c/prueba', 'png', 'detalle', 'detalle largo', '8', 'Superman');
+
 
 ```
   </details>
