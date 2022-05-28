@@ -141,7 +141,7 @@ VALUES
 <br>
 
 
-![image](https://user-images.githubusercontent.com/65864090/170564569-b9d6a0ae-3de0-428a-aa4b-963606de83a9.png)
+![image](https://github.com/JoanHurtadoKuin/ProyectoGestorMultimedia/blob/master/reverse_db.JPG)
 
 <details>
   <summary>SQL TESTING</summary>
