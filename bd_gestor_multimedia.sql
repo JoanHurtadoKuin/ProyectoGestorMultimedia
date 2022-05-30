@@ -8,10 +8,10 @@ CREATE TABLE IF NOT EXISTS `usuario`  (
     `superusuario` BOOLEAN NOT NULL DEFAULT 0
 );
 ALTER TABLE `usuario` AUTO_INCREMENT = 1;
-INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Administrador', '4321',true);
-INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Usuario', '4321', false);
-INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Daniel', '4321', false);
-INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Jose', '4321', false);
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Administrador', '$10$XURPShQNCsLjp1ESc2laoObo9QZDhxz73hJPaEv7/cBha4pk0AgP.',true);
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Usuario', '$2a$10$IqzFRoerTGsJakv2DuLL6eLzI3qYMSSZ7bRjVZX134E59wbWfi2v2', false);
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Daniel', '$2a$10$IqzFRoerTGsJakv2DuLL6eLzI3qYMSSZ7bRjVZX134E59wbWfi2v2', false);
+INSERT INTO `usuario` (`nombre`, `contrasenya`, `superusuario`) VALUES ('Jose', '$2a$10$IqzFRoerTGsJakv2DuLL6eLzI3qYMSSZ7bRjVZX134E59wbWfi2v2', false);
 
 DROP TABLE IF EXISTS `categoria` ;
 CREATE TABLE IF NOT EXISTS `categoria` (
